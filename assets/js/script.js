@@ -373,24 +373,7 @@
 	scrollButton.addEventListener('click', scrollToTop);
 
 	//scroll-up  />>>>>>>>>>>>>>>>>>>>>>*/
-
-	//Уведомление об успешной отправке формы  >>>>>>>>>>>>>>>>>>>>>>*/
-	var senderName = document.getElementsByName('name');
-	var senderEmail = document.getElementsByName('email');
-	var textarea = document.getElementsByName('textarea');
-	var formSubmit = document.getElementById('submit');
-	var popupSend = document.querySelector('popup-send');
-
-	formSubmit.addEventListener('click', function () {
-		if (senderName[0].value !== "" && senderEmail[0].value !== "" && textarea[0].value !== "") {
-			alert('Сообщение отправлено');
-			//popupSend.classList.add('is-active');
-		}
-	})
-
-	//Уведомление об успешной отправке формы  />>>>>>>>>>>>>>>>>>>>>>*/
-
-
+	
 	//tooltip    >>>>>>>>>>>>>>>>>>>>>>*/
 	let tooltipElem;
 
