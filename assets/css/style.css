@@ -1643,6 +1643,10 @@ h6 {
 	.services-item {
 		width: 44%;
 	}
+	
+	.loader {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 656px) {
