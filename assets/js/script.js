@@ -2,7 +2,7 @@
 
 	var body = document.querySelector('body');
 
-	//прелоадер >>>>>>>>>>>>>>>>>>>>>>*/
+	//preloader >>>>>>>>>>>>>>>>>>>>>>*/
 	var preloader = document.querySelector('.loader');
 	//body.classList.add('overflow');
 	window.onload = function () {
@@ -95,7 +95,7 @@
 		var node = elem;
 		while (node) {
 			if (node.classList.contains(className)) {
-				return node; //класс есть — значит его и возвращаем, прекращая функцию
+				return node;
 			}
 			node = node.parentElement;
 		}
@@ -103,19 +103,15 @@
 	}
 
 	var catalog = document.querySelector('.portfolio-content');
-	//блок с табами
 	var catalogNav = document.querySelector('.portfolio-filter');
-
 	var catalogItems = document.querySelectorAll('.portfolio-content__item');
 
-	//Очистка блока с элементами, чтобы при фильрации добавлялись новые в чиситый блок
 	function removeChildren(item) {
 		while (item.firstChild) {
 			item.removeChild(item.firstChild)
 		}
 	}
 
-	//обновляем элементы в каталоге | item это блок каталога
 	function updateChildren(item, children) {
 		removeChildren(item);
 		for (var i = 0; i < children.length; i++) {
@@ -133,19 +129,16 @@
 		loadContent();
 
 		e.preventDefault();
-		//Получаем значение из атрибута data-filter="" 
 		var filterValue = item.getAttribute('data-filter');
 		var previousActiveBtn = document.querySelector('.portfolio-filter__link.is-active');
 		previousActiveBtn.classList.remove('is-active');
 		item.classList.add('is-active');
 
-		//Если выбраны ВСЕ, то просто их всех выводим
 		if (filterValue === 'all') {
 			updateChildren(catalog, catalogItems);
 			return;
 		}
 
-		//Отфильтрованные элементы перемещаем в массив
 		var filteredItems = [];
 		for (var i = 0; i < catalogItems.length; i++) {
 			var currentItem = catalogItems[i];
@@ -159,11 +152,10 @@
 
 	/* filter />>>>>>>>>>>>>>>>>>>>>>*/
 
-	/* переход по якорям />>>>>>>>>>>>>>>>>>>>>>*/
 	var smoothScroll = function (targetEl, duration) {
-		var headerElHeight = document.querySelector('#header').clientHeight; // класс хедера
+		var headerElHeight = document.querySelector('#header').clientHeight;
 		var target = document.querySelector(targetEl);
-		var targetPosition = target.getBoundingClientRect().top; //- headerElHeight; //вычитаем размер хедера, если он фиксированный
+		var targetPosition = target.getBoundingClientRect().top;
 		var startPosition = window.pageYOffset;
 		var startTime = null;
 
@@ -186,14 +178,12 @@
 
 	var scrollTo = function () {
 		var headerNav = document.querySelector('.navigation');
-		//var links = document.querySelectorAll('.js-scroll'); //добавляем классы к линкам
-		var links = document.querySelectorAll('.nav-link'); //добавляем классы к линкам
+		var links = document.querySelectorAll('.nav-link');
 
 		links.forEach(each => {
 			each.addEventListener('click', function () {
 				var currentTarget = this.getAttribute('href');
 				smoothScroll(currentTarget, 1000);
-				//выход из мобильного меню
 				headerNav.classList.remove('active');
 				document.querySelector("#burger").classList.remove('hamburger_active');
 				//body.classList.toggle('overflow')
@@ -204,9 +194,6 @@
 	};
 	scrollTo();
 
-	/* переход по якорям />>>>>>>>>>>>>>>>>>>>>>*/
-
-	/* мобильное меню >>>>>>>>>>>>>>>>>>>>>>*/
 	var burger = document.querySelector("#burger");
 	var navigation = document.querySelector(".navigation");
 
@@ -224,7 +211,6 @@
 		if (body.classList.contains('overflow'))
 			body.classList.remove('overflow')
 	})
-	/* мобильное меню />>>>>>>>>>>>>>>>>>>>>>*/
 
 	//filter >>>>>>>>>>>>>>>>>>>>>>*/
 	var filter = document.querySelector("#filter");
@@ -236,74 +222,46 @@
 
 	//popup  >>>>>>>>>>>>>>>>>>>>>>*/
 
-	//Функция для поиска атрибута по вложенным тегам
 	var closestsElementAttr = function (elem, attr) {
 		var node = elem;
-		/*/	если клик по дочернему элементу, то возвращаем
-		*	атрибут родителя, перескакивая вверх через ноду по циклу
-		/*/
 		while (node) {
 			var attribute = node.getAttribute(attr);
 			if (attribute) {
-				return attribute; //атрибут есть — значит его и возвращаем, прекращая функцию
+				return attribute;
 			}
-			/*/ если атрибут пуст, то вместо текущего елемента берется его родительский
-			*	и так по циклу до тех пор, пока у конечного родителя не найдется атрибут, 
-			*   иначе return null
-			/*/
 			node = node.parentElement;
 		}
-		//возврат null если нет нашего атрибута ни у элемента, ни у его дочерних узлов
 		return null;
 	}
 
-	//Поиск ближайшего элемента по классу
 	var closestsElementClass = function (elem, className) {
 		var node = elem;
-		/*/	если клик по дочернему элементу, то возвращаем
-		*	класс родителя, перескакивая вверх через ноду по циклу
-		/*/
 		while (node) {
-			/*/ если текущий элемент содержит тот класс, который мы ему передали,
-			*	при вызове функции, то просто возвращаем этот элемент, 
-			/*/
 			if (node.classList.contains(className)) {
-				return node; //класс есть — значит его и возвращаем, прекращая функцию
+				return node; 
 			}
-			/*/ если класса нет, то вместо текущего елемента берется его родительский
-			*	и так по циклу до тех пор, пока у конечного родителя не найдется класс, 
-			*   который мы передали, иначе return null
-			/*/
 			node = node.parentElement;
 		}
-		//возврат null если нет нашего класса ни у элемента, ни у его дочерних узлов
 		return null;
 	}
 
-	//Показ попапа
 	function showPopup(target) {
 		target.classList.add('is-active');
 	}
 
-	//Скрытие попапа
 	function closePopup(target) {
 		target.classList.remove('is-active');
 	}
 
-	//BODY overflow hidden, чтобы при открытом попапе фон не скролился
 	function bodyOverflow() {
 		body.classList.toggle('overflow');
 	}
 
 
-	//Открытие попапа при клике на бургер меню
 	body.addEventListener('click', function (e) {
 		var target = e.target;
-		//Поиск названия data-popup, который задан у кнопки бургера
-		//var popupClass = target.getAttribute('data-popup');
 		var popupClass = closestsElementAttr(target, 'data-popup');
 
-		//если элемент, на котором кликнули, не имеет аттрибут data-popup, то выходим
 		if (popupClass === null) {
 			return;
 		}
@@ -315,12 +273,9 @@
 		}
 	})
 
-	//Закрытие попапа при клике X или на область вне попапа
 	body.addEventListener('click', function (e) {
 		var target = e.target;
-		//Если клик был на кнопку Х или фон вне попапа, то закрываем его
 		if (e.target.classList.contains('popup__close') || e.target.classList.contains('popup__wrapper') || e.target.classList.contains('popup__inner')) {
-			//поиск той кноки Х, которая относится к конкретному попапу
 			var popup = closestsElementClass(target, 'popup');
 			closePopup(popup);
 			bodyOverflow();
@@ -328,7 +283,6 @@
 
 	});
 
-	//Закрытие попапа при клике на escape (Esc)
 	body.addEventListener('keydown', function (e) {
 		if (e.keyCode !== 27)
 			return;
@@ -379,26 +333,21 @@
 
 	document.onmouseover = function (event) {
 		let target = event.target;
-
-		// если у нас есть подсказка...
 		let tooltipHtml = target.dataset.tooltip;
 		if (!tooltipHtml) return;
 
-		// ...создадим элемент для подсказки
 
 		tooltipElem = document.createElement('div');
 		tooltipElem.className = 'tooltip';
 		tooltipElem.innerHTML = tooltipHtml;
 		document.body.append(tooltipElem);
-
-		// спозиционируем его сверху от аннотируемого элемента (top-center)
 		let coords = target.getBoundingClientRect();
 
 		let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
-		if (left < 0) left = 0; // не заезжать за левый край окна
+		if (left < 0) left = 0;
 
 		let top = coords.top - tooltipElem.offsetHeight - 5;
-		if (top < 0) { // если подсказка не помещается сверху, то отображать её снизу
+		if (top < 0) { 
 			top = coords.top + target.offsetHeight + 5;
 		}
 
