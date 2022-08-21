@@ -29,7 +29,7 @@
 	<meta property="og:image" content="https://mamikonars.github.io/personal/assets/img/og-image.jpg" />
 </head>
 
-<body>
+<body>	
 	<div class="loader">
 		<span class="loader-item">|</span>
 		<span class="loader-item" style="--delay: 0.0s">|</span>
@@ -38,6 +38,8 @@
 		<span class="loader-item" style="--delay: 0.3s">|</span>
 		<span class="loader-item" style="--delay: 0.4s">|</span>
 	</div>
+	<canvas id="canvas">
+	</canvas>
 	<header class="header" id="header">
 		<div class="container header-content">
 			<div class="about-user">
@@ -71,7 +73,7 @@
 			</div>
 
 			<div class="intro__image-block">
-				<img src="assets/img/intro-img.jpg" alt="Создание сайтов" class="intro__image">
+				<img src="assets/img/dev.png" alt="Создание сайтов" class="intro__image">
 			</div>
 		</div>
 	</section>
@@ -84,7 +86,7 @@
 				<span class="portfolio-filter__link" data-filter="lp">Лединги</span>
 				<span class="portfolio-filter__link" data-filter="wp">WordPress</span>
 				<span class="portfolio-filter__link" data-filter="wp-shop">Онлайн магазины</span>
-				<span class="portfolio-filter__link" data-filter="htmltowp">Интеграция верстки в WP</span>
+				<span class="portfolio-filter__link" data-filter="htmltowp">Figma &rarr; WordPress</span>
 			</div>
 			<div class="portfolio-content">
 				<div class="portfolio-content__item" data-category="lp">
@@ -289,6 +291,32 @@
 						</div>
 					</div>
 				</div>
+
+				//
+				<div class="portfolio-content__item portfolio-hidden" data-category="htmltowp">
+					<a href="http://muna.marstasi.beget.tech/" target="_blank"><img src="assets/img/muna.jpg"
+							class="portfolio-content__img" alt="Натяжка на WordPress"></a>
+					<div class="portfolio-content__info">
+						<div class="content-tags">
+							<span class="portfolio-content__title">Muna</span>
+							<span class="info-tooltip"
+								data-tooltip="Интеграция верстки в WordPress, с созданием собственного шаблона">i</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="portfolio-content__item portfolio-hidden" data-category="htmltowp">
+					<a href="http://gym.marstasi.beget.tech/" target="_blank"><img src="assets/img/gym.jpg"
+							class="portfolio-content__img" alt="Натяжка на WordPress"></a>
+					<div class="portfolio-content__info">
+						<div class="content-tags">
+							<span class="portfolio-content__title">Gym</span>
+							<span class="info-tooltip"
+								data-tooltip="Интеграция верстки в WordPress, с созданием собственного шаблона">i</span>
+						</div>
+					</div>
+				</div>
+				//
 			</div>
 		</div>
 	</div>
@@ -422,7 +450,7 @@
 	</section>
 	<footer class="footer">
 		<div class="container footer-block">
-			<span class="copy">&copy; 2021 | Создание сайтов</span>
+			<span class="copy">&copy; 2022 | Создание сайтов</span>
 
 			<div class="footer-social">
 				<ul class="footer-social__list">
@@ -506,6 +534,7 @@
 		</div>
 	</div>
 	<script src="assets/js/script.js"></script>
+	<script src="assets/js/canvas.js"></script>
 </body>
 
 </html>
